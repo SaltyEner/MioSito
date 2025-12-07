@@ -16,8 +16,9 @@ export default function Home() {
       {/* Background Blob Effect */}
       <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[100px] pointer-events-none z-0"></div>
 
+      <Navbar />
+
       <div className="max-w-6xl mx-auto px-6 relative z-10">
-        <Navbar />
         <Hero />
         <About />
 

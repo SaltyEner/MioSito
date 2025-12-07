@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export function Hero() {
     return (
-        <header className="py-20 md:py-32 grid lg:grid-cols-2 gap-12 items-center">
+        <header id="hero" className="py-20 md:py-32 grid lg:grid-cols-2 gap-12 items-center">
             <div className="flex flex-col items-start">
                 <motion.div
                     initial={{ opacity: 0, x: -50 }}
