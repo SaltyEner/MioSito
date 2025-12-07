@@ -57,31 +57,32 @@ export const PROJECTS: Project[] = [
     },
     {
         id: "2",
-        slug: "ecommerce-ai",
-        title: "E-Commerce AI",
-        category: "Web App",
-        shortDescription: "Piattaforma di vendita con raccomandazioni prodotti basate su ML.",
+        slug: "human-routine-recognition",
+        title: "Human Routine Recognition",
+        category: "AI / IoT",
+        shortDescription: "Piattaforma innovativa per l'identificazione di routine umane da log IoT.",
         fullDescription: `
-            Una piattaforma e-commerce moderna che non si limita a vendere prodotti, ma capisce i gusti degli utenti.
-            Integrando TensorFlow, il sistema analizza la navigazione e gli acquisti passati per suggerire 
-            prodotti pertinenti in tempo reale, aumentando il tasso di conversione.
+            Human Routine Recognition è una piattaforma innovativa progettata per identificare e analizzare le routine umane partendo dai log di eventi generati da dispositivi IoT. Il progetto utilizza avanzati algoritmi di Community Detection per trasformare dati grezzi in modelli comportamentali significativi, offrendo insight preziosi in contesti come l'Ambient Assisted Living (assistenza anziani), la sicurezza industriale e la domotica smart.
+
+            Il sistema permette di caricare file di log (standard XES), visualizzare graficamente le routine identificate tramite Directly-Follows Graphs (DFGs) e configurare dinamicamente gli algoritmi di analisi per adattarsi a diversi scenari d'uso.
         `,
-        techStack: ["Next.js", "Python", "TensorFlow", "Redis", "Stripe"],
+        techStack: ["React", "TypeScript", "Kafka", "Python", "AI Algorithms"],
         features: [
-            "Ricerca semantica vettoriale",
-            "Raccomandazioni personalizzate",
-            "Carrello persistente",
-            "Checkout sicuro con Stripe"
+            "Analisi Log IoT (XES/CSV): Parsing avanzato per estrazione eventi.",
+            "Community Detection con AI: Identificazione cluster di attività.",
+            "Dashboard Interattiva: Visualizzazione DFG e grafici.",
+            "Elaborazione Big Data: Architettura scalabile con Kafka.",
+            "Export Reporting: Esportazione community e statistiche."
         ],
         images: {
-            hero: "/placeholder-project.png", // Da sostituire
+            hero: "/placeholder-project.png", // Da sostituire con screenshot reale
             gallery: []
         },
         links: {
             demo: "#",
             github: "#"
         },
-        color: "bg-blue-500"
+        color: "bg-indigo-500"
     },
     {
         id: "3",
