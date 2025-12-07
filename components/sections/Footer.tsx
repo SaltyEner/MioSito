@@ -16,7 +16,7 @@ export function Footer() {
                 </p>
                 <div className="flex justify-center gap-6">
                     <motion.a
-                        href="mailto:contatto@alessioprosperi.it"
+                        href="mailto:alessio2066@gmail.com"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         className="bg-primary text-black px-8 py-3 rounded-full font-bold hover:bg-primary-hover transition shadow-lg shadow-primary/20"
@@ -24,7 +24,8 @@ export function Footer() {
                         Invia una Email
                     </motion.a>
                     <motion.a
-                        href="#"
+                        href="https://www.linkedin.com/in/alessio-prosperii/"
+                        target="_blank"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         className="text-foreground flex items-center gap-2 hover:text-primary transition font-medium"

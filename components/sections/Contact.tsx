@@ -70,14 +70,14 @@ export function Contact() {
 
                         <div className="space-y-6">
                             <motion.a
-                                href="mailto:contatto@alessioprosperi.it"
+                                href="mailto:alessio2066@gmail.com"
                                 whileHover={{ x: 5 }}
                                 className="flex items-center gap-4 text-text-muted hover:text-primary transition group"
                             >
                                 <div className="p-3 bg-surface rounded-full border border-border group-hover:border-primary/50 transition">
                                     <Mail className="w-5 h-5" />
                                 </div>
-                                <span className="text-lg">contatto@alessioprosperi.it</span>
+                                <span className="text-lg">alessio2066@gmail.com</span>
                             </motion.a>
 
                             <div className="flex items-center gap-4 text-text-muted">
@@ -100,7 +100,7 @@ export function Contact() {
                                     <Github className="w-5 h-5" />
                                 </motion.a>
                                 <motion.a
-                                    href="https://linkedin.com"
+                                    href="https://www.linkedin.com/in/alessio-prosperii/"
                                     target="_blank"
                                     whileHover={{ y: -5 }}
                                     className="p-3 bg-card border border-border rounded-lg text-text-muted hover:text-blue-500 hover:border-blue-500/50 transition shadow-sm"
