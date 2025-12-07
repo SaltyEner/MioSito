@@ -23,17 +23,16 @@ export default function Home() {
 
         <div className="w-full h-px bg-linear-to-r from-transparent via-border to-transparent mb-20"></div>
 
-        {/* Carousel for other projects */}
-        <ProjectsCarousel />
+        {/* Featured Project Deep Dive */}
+        <FeaturedProject />
 
         <div className="w-full h-px bg-linear-to-r from-transparent via-border to-transparent mb-20"></div>
 
-        {/* Featured Project Deep Dive */}
-        <FeaturedProject />
+        {/* Carousel for other projects */}
+        <ProjectsCarousel />
         <Skills />
 
-        {/* Contact section is integrated into footer in new design, but keeping separate if needed, or merging */}
-        {/* The user design uses a Footer that acts as Contact CTA, so we will use Footer for that */}
+        <Contact />
         <Footer />
       </div>
     </main>

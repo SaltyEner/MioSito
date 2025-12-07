@@ -1,90 +1,177 @@
+"use client";
+
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
+import React, { useRef } from "react";
+
+function TiltedCard({ children }: { children: React.ReactNode }) {
+    const ref = useRef<HTMLDivElement>(null);
+
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+
+    const mouseXSpring = useSpring(x);
+    const mouseYSpring = useSpring(y);
+
+    const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["15deg", "-15deg"]);
+    const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-15deg", "15deg"]);
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        if (!ref.current) return;
+
+        const rect = ref.current.getBoundingClientRect();
+
+        const width = rect.width;
+        const height = rect.height;
+
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+
+        const xPct = mouseX / width - 0.5;
+        const yPct = mouseY / height - 0.5;
+
+        x.set(xPct);
+        y.set(yPct);
+    };
+
+    const handleMouseLeave = () => {
+        x.set(0);
+        y.set(0);
+    };
+
+    return (
+        <motion.div
+            ref={ref}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            style={{
+                rotateY,
+                rotateX,
+                transformStyle: "preserve-3d",
+            }}
+            className="relative w-full h-full flex items-center justify-center p-8 group"
+        >
+            <div
+                style={{
+                    transform: "translateZ(75px)",
+                    transformStyle: "preserve-3d",
+                }}
+                className="relative w-full max-w-md shadow-2xl rounded-xl transition-all duration-300"
+            >
+                {children}
+            </div>
+        </motion.div>
+    );
+}
+
 export function FeaturedProject() {
     return (
-        <section id="konta" className="py-10">
-            <div className="flex items-center gap-4 mb-10">
+        <section id="konta" className="py-20">
+            <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="flex items-center gap-4 mb-16"
+            >
                 <h2 className="text-3xl font-bold text-foreground">Featured Product</h2>
                 <div className="h-px flex-1 bg-border"></div>
-            </div>
+            </motion.div>
 
             <div className="glass rounded-2xl p-1 border border-white/10 overflow-hidden relative group">
-                <div className="absolute inset-0 bg-linear-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition duration-700"></div>
+                <div className="absolute inset-0 bg-linear-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition duration-700 pointer-events-none"></div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 lg:gap-12">
 
-                    <div className="p-8 lg:p-12 flex flex-col justify-center">
-                        <div className="flex items-center gap-3 mb-4">
-                            <span className="text-primary font-bold text-xl tracking-wider">KONTA</span>
+                    <div className="p-8 lg:p-12 flex flex-col justify-center order-2 lg:order-1">
+                        <motion.div
+                            initial={{ opacity: 0, x: -50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8, type: "spring" }}
+                            className="flex items-center gap-3 mb-6"
+                        >
+                            <span className="text-primary font-bold text-2xl tracking-wider">KONTA</span>
                             <span className="bg-primary/10 text-primary border border-primary/20 text-[10px] px-2 py-0.5 rounded uppercase font-bold tracking-wide">SaaS B2B</span>
-                        </div>
+                        </motion.div>
 
-                        <h3 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">
+                        <motion.h3
+                            initial={{ opacity: 0, x: -50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8, delay: 0.2, type: "spring" }}
+                            className="text-3xl md:text-5xl font-bold mb-6 text-foreground"
+                        >
                             Intelligent Financial Automation.
-                        </h3>
+                        </motion.h3>
 
-                        <p className="text-text-muted mb-6 leading-relaxed">
+                        <motion.p
+                            initial={{ opacity: 0, x: -50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8, delay: 0.4, type: "spring" }}
+                            className="text-lg text-text-muted mb-8 leading-relaxed"
+                        >
                             Una piattaforma enterprise per l'automazione contabile.
                             Konta elimina il data-entry manuale utilizzando un <strong>motore AI Ibrido</strong> (Parser XML + Gemini Vision) e un'architettura asincrona su PostgreSQL.
-                        </p>
+                        </motion.p>
 
-                        <div className="flex flex-wrap gap-2 mb-8">
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.8, delay: 0.5, type: "spring" }}
+                            className="flex flex-wrap gap-2 mb-10"
+                        >
                             <span className="px-3 py-1 bg-surface border border-border rounded text-xs text-gray-300 font-mono">Next.js 15</span>
                             <span className="px-3 py-1 bg-surface border border-border rounded text-xs text-gray-300 font-mono">FastAPI</span>
                             <span className="px-3 py-1 bg-surface border border-border rounded text-xs text-gray-300 font-mono">Gemini Vision</span>
                             <span className="px-3 py-1 bg-surface border border-border rounded text-xs text-gray-300 font-mono">Twilio</span>
                             <span className="px-3 py-1 bg-surface border border-border rounded text-xs text-gray-300 font-mono">Docker</span>
-                        </div>
+                        </motion.div>
 
-                        <div className="grid grid-cols-2 gap-4 mb-8">
+                        <motion.div
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.6, type: "spring" }}
+                            className="grid grid-cols-2 gap-4 mb-8"
+                        >
                             <div className="border-l-2 border-primary/50 pl-4">
-                                <div className="text-foreground font-bold">99.9%</div>
-                                <div className="text-xs text-text-muted">Parsing Accuracy</div>
+                                <div className="text-foreground font-bold text-xl">99.9%</div>
+                                <div className="text-sm text-text-muted">Parsing Accuracy</div>
                             </div>
                             <div className="border-l-2 border-primary/50 pl-4">
-                                <div className="text-foreground font-bold">Real-time</div>
-                                <div className="text-xs text-text-muted">WhatsApp Sync</div>
+                                <div className="text-foreground font-bold text-xl">Real-time</div>
+                                <div className="text-sm text-text-muted">WhatsApp Sync</div>
                             </div>
-                        </div>
+                        </motion.div>
 
-                        <div className="flex gap-4">
-                            <button className="text-foreground text-sm font-semibold border-b border-primary pb-0.5 hover:text-primary transition cursor-pointer">
+                        <motion.div
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.7, type: "spring" }}
+                        >
+                            <Link href="/projects/konta" className="text-foreground text-sm font-semibold border-b border-primary pb-0.5 hover:text-primary transition cursor-pointer">
                                 Vedi Architettura System Design
-                            </button>
-                        </div>
+                            </Link>
+                        </motion.div>
                     </div>
 
-                    <div className="bg-surface relative min-h-[300px] lg:min-h-full border-t lg:border-t-0 lg:border-l border-border flex flex-col items-center justify-center p-8 overflow-hidden">
-                        <div className="w-full max-w-sm bg-card border border-border rounded-xl shadow-2xl p-4 relative z-10 transform transition group-hover:scale-105 duration-500">
-                            <div className="flex items-center justify-between mb-4 border-b border-border pb-2">
-                                <div className="flex gap-1.5">
-                                    <div className="w-2.5 h-2.5 rounded-full bg-red-500/50"></div>
-                                    <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/50"></div>
-                                    <div className="w-2.5 h-2.5 rounded-full bg-green-500/50"></div>
-                                </div>
-                                <div className="text-[10px] text-text-muted font-mono">dashboard.konta.app</div>
-                            </div>
-                            <div className="space-y-3">
-                                <div className="flex justify-between items-center">
-                                    <div className="h-8 w-24 bg-border/50 rounded animate-pulse"></div>
-                                    <div className="h-8 w-8 bg-primary/20 rounded-full flex items-center justify-center text-primary text-xs">AI</div>
-                                </div>
-                                <div className="h-32 bg-background rounded border border-border/50 p-3 space-y-2">
-                                    <div className="flex justify-between items-center p-2 bg-card rounded border border-border/30">
-                                        <div className="h-2 w-16 bg-text-muted/20 rounded"></div>
-                                        <div className="h-2 w-8 bg-primary/40 rounded"></div>
-                                    </div>
-                                    <div className="flex justify-between items-center p-2 bg-card rounded border border-border/30">
-                                        <div className="h-2 w-20 bg-text-muted/20 rounded"></div>
-                                        <div className="h-2 w-8 bg-primary/40 rounded"></div>
-                                    </div>
-                                    <div className="flex justify-between items-center p-2 bg-card rounded border border-border/30">
-                                        <div className="h-2 w-12 bg-text-muted/20 rounded"></div>
-                                        <div className="h-2 w-8 bg-primary/40 rounded"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div className="bg-surface relative min-h-[400px] lg:min-h-full border-t lg:border-t-0 lg:border-l border-border flex flex-col items-center justify-center overflow-hidden order-1 lg:order-2 perspective-1000">
+                        {/* Background Blur */}
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-primary/20 blur-[80px] rounded-full pointer-events-none"></div>
 
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-primary/20 blur-[60px] rounded-full pointer-events-none"></div>
+                        <Link href="/projects/konta" className="block w-full h-full">
+                            <TiltedCard>
+                                <div className="relative rounded-xl overflow-hidden border border-white/10 shadow-2xl">
+                                    <Image
+                                        src="/konta-preview.png"
+                                        alt="Konta Dashboard"
+                                        width={800}
+                                        height={600}
+                                        className="w-full h-auto object-cover"
+                                    />
+                                    {/* Reflection overlay */}
+                                    <div className="absolute inset-0 bg-linear-to-tr from-white/10 to-transparent opacity-50 pointer-events-none"></div>
+                                </div>
+                            </TiltedCard>
+                        </Link>
                     </div>
                 </div>
             </div>

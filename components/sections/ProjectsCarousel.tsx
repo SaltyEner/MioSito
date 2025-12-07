@@ -2,13 +2,15 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, ExternalLink, Github } from "lucide-react";
+import { ChevronLeft, ChevronRight, ExternalLink, Github, BookOpen } from "lucide-react";
+import Link from "next/link";
 
 interface Project {
     id: number;
     title: string;
     category: string;
     description: string;
+    slug: string;
     stack: string[];
     color: string;
 }
@@ -19,6 +21,7 @@ const PROJECTS: Project[] = [
         title: "E-Commerce AI",
         category: "Web App",
         description: "Piattaforma di vendita con raccomandazioni prodotti basate su algoritmi di Machine Learning.",
+        slug: "ecommerce-ai",
         stack: ["Next.js", "Python", "TensorFlow"],
         color: "bg-blue-500",
     },
@@ -27,6 +30,7 @@ const PROJECTS: Project[] = [
         title: "Crypto Dashboard",
         category: "Fintech",
         description: "Dashboard in tempo reale per monitoraggio prezzi e gestione portafoglio crypto.",
+        slug: "crypto-dashboard",
         stack: ["React", "WebSocket", "Tailwind"],
         color: "bg-purple-500",
     },
@@ -35,6 +39,7 @@ const PROJECTS: Project[] = [
         title: "Task Manager Pro",
         category: "Productivity",
         description: "Applicazione per la gestione di team con funzionalità di chat e calendarizzazione.",
+        slug: "task-manager-pro",
         stack: ["Vue.js", "Firebase", "Node.js"],
         color: "bg-orange-500",
     },
@@ -52,8 +57,13 @@ export function ProjectsCarousel() {
     };
 
     return (
-        <section className="py-20 overflow-hidden relative">
-            <div className="max-w-6xl mx-auto px-6">
+        <section id="projects" className="py-20 overflow-hidden relative">
+            <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="max-w-6xl mx-auto px-6"
+            >
                 <div className="flex items-center justify-between mb-12">
                     <div>
                         <h2 className="text-3xl font-bold text-foreground mb-2">Altri Progetti</h2>
@@ -61,18 +71,22 @@ export function ProjectsCarousel() {
                     </div>
 
                     <div className="flex gap-2">
-                        <button
+                        <motion.button
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
                             onClick={prevSlide}
                             className="p-3 rounded-full border border-border bg-card hover:bg-border transition text-foreground"
                         >
                             <ChevronLeft className="w-5 h-5" />
-                        </button>
-                        <button
+                        </motion.button>
+                        <motion.button
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
                             onClick={nextSlide}
                             className="p-3 rounded-full border border-border bg-card hover:bg-border transition text-foreground"
                         >
                             <ChevronRight className="w-5 h-5" />
-                        </button>
+                        </motion.button>
                     </div>
                 </div>
 
@@ -110,12 +124,9 @@ export function ProjectsCarousel() {
                                     </div>
 
                                     <div className="flex gap-4">
-                                        <button className="flex items-center gap-2 text-primary font-bold hover:underline">
-                                            <ExternalLink className="w-4 h-4" /> Live Demo
-                                        </button>
-                                        <button className="flex items-center gap-2 text-text-muted hover:text-foreground transition">
-                                            <Github className="w-4 h-4" /> Code
-                                        </button>
+                                        <Link href={`/projects/${PROJECTS[currentIndex].slug}`} className="flex items-center gap-2 text-primary font-bold hover:underline">
+                                            <BookOpen className="w-4 h-4" /> Leggi Case Study
+                                        </Link>
                                     </div>
                                 </div>
 
@@ -132,7 +143,7 @@ export function ProjectsCarousel() {
                         </motion.div>
                     </AnimatePresence>
                 </div>
-            </div>
+            </motion.div>
         </section>
     );
 }

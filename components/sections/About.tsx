@@ -1,14 +1,28 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 export function About() {
     return (
         <section id="about" className="py-20 relative">
             <div className="absolute top-0 right-0 -mr-20 w-72 h-72 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
 
-            <div className="flex items-center gap-4 mb-10">
+            <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="flex items-center gap-4 mb-10"
+            >
                 <h2 className="text-3xl font-bold text-foreground">Chi Sono</h2>
                 <div className="h-px flex-1 bg-border"></div>
-            </div>
+            </motion.div>
 
-            <div className="bg-card border border-border p-8 md:p-12 rounded-2xl relative overflow-hidden">
+            <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="bg-card border border-border p-8 md:p-12 rounded-2xl relative overflow-hidden"
+            >
                 {/* Decorative quote icon */}
                 <div className="absolute top-6 right-8 text-primary/10 text-9xl font-serif leading-none select-none">
                     &rdquo;
@@ -37,7 +51,7 @@ export function About() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </motion.div>
         </section>
     );
 }
