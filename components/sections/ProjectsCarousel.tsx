@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, BookOpen } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { PROJECTS } from "@/lib/data/projects";
 
 export function ProjectsCarousel() {
@@ -104,8 +105,13 @@ export function ProjectsCarousel() {
                                     <div className={`w-32 h-32 rounded-full ${currentProject.color} blur-[100px] opacity-20 absolute group-hover:opacity-40 transition-opacity duration-500`}></div>
 
                                     <div className="relative z-10 w-full max-w-sm aspect-video bg-background border border-border rounded-lg shadow-2xl flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform duration-500">
-                                        {/* Ideally we would use Next/Image here if we had a real image, keeping the placeholder logic for now but making it clearer it's a preview */}
-                                        <span className="text-text-muted font-mono text-sm group-hover:text-primary transition-colors">Preview UI</span>
+                                        <Image
+                                            src={currentProject.images.hero}
+                                            alt={currentProject.title}
+                                            width={600}
+                                            height={400}
+                                            className="w-full h-full object-cover"
+                                        />
                                     </div>
                                 </Link>
                             </div>

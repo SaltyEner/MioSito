@@ -86,31 +86,34 @@ export const PROJECTS: Project[] = [
     },
     {
         id: "3",
-        slug: "crypto-dashboard",
-        title: "Crypto Dashboard",
-        category: "Fintech",
-        shortDescription: "Monitoraggio in tempo reale di asset crypto con WebSocket.",
+        slug: "trust-chain",
+        title: "TrustChain",
+        category: "Blockchain / Web3",
+        shortDescription: "Sistema ibrido per la certificazione immutabile e verificabile di documenti tramite Blockchain Ethereum.",
         fullDescription: `
-            Dashboard professionale per trader che necessitano di dati aggiornati al millisecondo.
-            Utilizzando WebSocket, la dashboard mostra i prezzi di centinaia di criptovalute senza 
-            necessità di refresh della pagina, con grafici interattivi e avvisi di prezzo.
+            Nell'attuale panorama digitale, la verificabilità e l'immutabilità delle informazioni rappresentano sfide critiche. Questo progetto nasce con l'obiettivo di superare i limiti dei sistemi di archiviazione centralizzati, vulnerabili a manomissioni e privi di trasparenza.
+
+            L'architettura ibrida sviluppata combina l'efficienza della crittografia off-chain con la sicurezza della Blockchain. Il cuore del sistema è un generatore di codice hash personalizzato, capace di sintetizzare documenti di qualsiasi dimensione in un'impronta digitale univoca (fingerprint), ancorata successivamente su Ethereum tramite Smart Contracts.
+
+            La soluzione garantisce la Proof of Existence (prova di esistenza) e la Proof of Integrity (prova di integrità) del dato originale senza esporre il contenuto sensibile, realizzando un sistema trustless garantito matematicamente.
         `,
-        techStack: ["React", "WebSocket", "Tailwind CSS", "Recharts"],
+        techStack: ["Ethereum", "Solidity", "Smart Contracts", "Cryptography", "React", "Web3.js"],
         features: [
-            "Live price feed",
-            "Analisi tecnica base",
-            "Gestione portfolio simulato",
-            "Avvisi prezzo via notifica browser"
+            "Data Integrity & Immutability: Garanzia matematica anti-manomissione.",
+            "Proof of Existence: Certificazione temporale su Blockchain pubblica.",
+            "Off-chain Computation: Hashing locale per privacy e risparmio gas.",
+            "Trustless Architecture: Sicurezza garantita dal protocollo, non da enti centrali.",
+            "Smart Contracts: Notarizzazione automatizzata su Ethereum."
         ],
         images: {
-            hero: "/placeholder-project.png",
+            hero: "/TrustChain.png",
             gallery: []
         },
         links: {
             demo: "#",
             github: "#"
         },
-        color: "bg-purple-500"
+        color: "bg-blue-600"
     }
 ];
 
