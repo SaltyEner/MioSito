@@ -1,11 +1,71 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useRef } from "react";
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ChevronLeft, ChevronRight, BookOpen } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { PROJECTS } from "@/lib/data/projects";
+
+function TiltedCard({ children }: { children: React.ReactNode }) {
+    const ref = useRef<HTMLDivElement>(null);
+
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+
+    const mouseXSpring = useSpring(x);
+    const mouseYSpring = useSpring(y);
+
+    const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["15deg", "-15deg"]);
+    const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-15deg", "15deg"]);
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        if (!ref.current) return;
+
+        const rect = ref.current.getBoundingClientRect();
+
+        const width = rect.width;
+        const height = rect.height;
+
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+
+        const xPct = mouseX / width - 0.5;
+        const yPct = mouseY / height - 0.5;
+
+        x.set(xPct);
+        y.set(yPct);
+    };
+
+    const handleMouseLeave = () => {
+        x.set(0);
+        y.set(0);
+    };
+
+    return (
+        <motion.div
+            ref={ref}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            style={{
+                rotateY,
+                rotateX,
+                transformStyle: "preserve-3d",
+            }}
+            className="relative w-full h-full flex items-center justify-center p-8 group"
+        >
+            <div
+                style={{
+                    transform: "translateZ(75px)",
+                    transformStyle: "preserve-3d",
+                }}
+                className="relative w-full shadow-2xl rounded-xl transition-all duration-300"
+            >
+                {children}
+            </div>
+        </motion.div>
+    );
+}
 
 export function ProjectsCarousel() {
     // Filter out the main featured project (Konta) to show only "Other Projects"
@@ -28,6 +88,7 @@ export function ProjectsCarousel() {
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
+                viewport={{ once: false, amount: 0.2 }}
                 className="max-w-6xl mx-auto px-6"
             >
                 <div className="flex items-center justify-between mb-12">
@@ -56,64 +117,92 @@ export function ProjectsCarousel() {
                     </div>
                 </div>
 
-                <div className="relative h-[400px] w-full">
+                <div className="relative min-h-[500px] w-full">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={currentIndex}
-                            initial={{ opacity: 0, x: 100 }}
+                            initial={{ opacity: 0, x: 50 }}
                             animate={{ opacity: 1, x: 0 }}
-                            exit={{ opacity: 0, x: -100 }}
-                            transition={{ duration: 0.3 }}
+                            exit={{ opacity: 0, x: -50 }}
+                            transition={{ duration: 0.5 }}
                             className="absolute inset-0"
                         >
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 h-full bg-card border border-border rounded-2xl overflow-hidden glass hover:border-primary/30 transition duration-500">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-8 h-full bg-card border border-border rounded-2xl overflow-hidden glass hover:border-primary/30 transition duration-500">
                                 {/* Left Side: Content */}
-                                <div className="p-6 md:p-10 flex flex-col justify-center h-full">
-                                    <div className={`inline-flex self-start px-2 py-1 rounded text-[10px] font-bold mb-4 bg-white/5 text-white border border-white/10 uppercase tracking-widest`}>
+                                <div className="p-8 md:p-12 flex flex-col justify-center h-full order-2 md:order-1">
+                                    <motion.div
+                                        initial={{ opacity: 0, x: -30 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ duration: 0.5, delay: 0.2 }}
+                                        className={`inline-flex self-start px-2 py-1 rounded text-[10px] font-bold mb-4 bg-white/5 text-white border border-white/10 uppercase tracking-widest`}
+                                    >
                                         {currentProject.category}
-                                    </div>
+                                    </motion.div>
 
-                                    <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
+                                    <motion.h3
+                                        initial={{ opacity: 0, x: -30 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ duration: 0.5, delay: 0.3 }}
+                                        className="text-3xl md:text-4xl font-bold text-foreground mb-4"
+                                    >
                                         {currentProject.title}
-                                    </h3>
+                                    </motion.h3>
 
-                                    <p className="text-text-muted text-base leading-relaxed mb-6 line-clamp-3">
+                                    <motion.p
+                                        initial={{ opacity: 0, x: -30 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ duration: 0.5, delay: 0.4 }}
+                                        className="text-text-muted text-lg leading-relaxed mb-8 line-clamp-3"
+                                    >
                                         {currentProject.shortDescription}
-                                    </p>
+                                    </motion.p>
 
-                                    <div className="flex flex-wrap gap-2 mb-6">
+                                    <motion.div
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        transition={{ duration: 0.5, delay: 0.5 }}
+                                        className="flex flex-wrap gap-2 mb-8"
+                                    >
                                         {currentProject.techStack.map((tech) => (
                                             <span key={tech} className="px-2 py-1 bg-surface border border-border rounded text-xs text-gray-300 font-mono">
                                                 {tech}
                                             </span>
                                         ))}
-                                    </div>
+                                    </motion.div>
 
-                                    <div className="mt-auto">
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.5, delay: 0.6 }}
+                                        className="mt-auto"
+                                    >
                                         <Link href={`/projects/${currentProject.slug}`} className="inline-flex items-center gap-2 text-primary font-bold hover:underline mb-2">
                                             <BookOpen className="w-4 h-4" /> Leggi Case Study
                                         </Link>
-                                    </div>
+                                    </motion.div>
                                 </div>
 
                                 {/* Right Side: Visual Placeholder - Clickable */}
-                                <Link
-                                    href={`/projects/${currentProject.slug}`}
-                                    className="bg-surface relative flex items-center justify-center p-8 border-l border-border/50 group cursor-pointer"
-                                >
-                                    {/* Abstract Visual based on color */}
-                                    <div className={`w-32 h-32 rounded-full ${currentProject.color} blur-[100px] opacity-20 absolute group-hover:opacity-40 transition-opacity duration-500`}></div>
+                                <div className="bg-surface relative flex items-center justify-center border-b md:border-b-0 md:border-l border-border/50 order-1 md:order-2 overflow-hidden perspective-1000">
+                                    {/* Background Blur */}
+                                    <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full ${currentProject.color} blur-[80px] opacity-30 pointer-events-none`}></div>
 
-                                    <div className="relative z-10 w-full max-w-sm aspect-video bg-background border border-border rounded-lg shadow-2xl flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform duration-500">
-                                        <Image
-                                            src={currentProject.images.hero}
-                                            alt={currentProject.title}
-                                            width={600}
-                                            height={400}
-                                            className="w-full h-full object-cover"
-                                        />
-                                    </div>
-                                </Link>
+                                    <Link href={`/projects/${currentProject.slug}`} className="block w-full h-full">
+                                        <TiltedCard>
+                                            <div className="relative rounded-xl overflow-hidden border border-white/10 shadow-2xl aspect-video">
+                                                <Image
+                                                    src={currentProject.images.hero}
+                                                    alt={currentProject.title}
+                                                    width={600}
+                                                    height={400}
+                                                    className="w-full h-full object-cover"
+                                                />
+                                                {/* Reflection overlay */}
+                                                <div className="absolute inset-0 bg-linear-to-tr from-white/10 to-transparent opacity-50 pointer-events-none"></div>
+                                            </div>
+                                        </TiltedCard>
+                                    </Link>
+                                </div>
                             </div>
                         </motion.div>
                     </AnimatePresence>
