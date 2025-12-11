@@ -60,6 +60,10 @@ export function Navbar() {
                         </AnimatePresence>
                     </div>
 
+                    <Link href="/technologies" className="hover:text-foreground transition-colors">
+                        Technologies
+                    </Link>
+
                     <Link href="/#about" className="hover:text-foreground transition-colors">
                         About Me
                     </Link>
@@ -132,6 +136,14 @@ export function Navbar() {
                                     )}
                                 </AnimatePresence>
                             </div>
+
+                            <Link
+                                href="/technologies"
+                                className="text-lg font-medium text-foreground"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                                Technologies
+                            </Link>
 
                             <Link
                                 href="/#about"

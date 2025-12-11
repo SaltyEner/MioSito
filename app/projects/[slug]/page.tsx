@@ -3,6 +3,7 @@
 
 import { notFound, useParams } from "next/navigation";
 import { getProjectBySlug } from "@/lib/data/projects";
+import { getSlugByName } from "@/lib/data/technologies";
 import { Navbar } from "@/components/ui/Navbar";
 import { Footer } from "@/components/sections/Footer";
 import { motion, Variants } from "framer-motion";
@@ -148,18 +149,30 @@ export default function ProjectPage() {
 
                         {/* Sidebar */}
                         <motion.div variants={itemVariants} className="space-y-8">
-                            <div className={`p-6 rounded-xl sticky top-24 border ${project.slug === 'envchor-modeler' ? 'bg-emerald-500/5 border-emerald-500/50' : 'bg-card border-border'}`}>
-                                <h3 className="text-lg font-bold mb-6 text-foreground">Technologies</h3>
+                            <div className="p-6 rounded-xl sticky top-24 border bg-red-500/5 border-red-500/10">
+                                <h3 className="text-lg font-bold mb-6 text-[#FF5252]">Technologies</h3>
                                 <div className="flex flex-wrap gap-2">
-                                    {project.techStack.map((tech) => (
-                                        <motion.span
-                                            key={tech}
-                                            whileHover={{ scale: 1.05 }}
-                                            className={`px-3 py-1.5 bg-surface border rounded text-sm text-gray-300 font-mono select-none ${project.slug === 'envchor-modeler' ? 'border-red-500/50' : 'border-border'}`}
-                                        >
-                                            {tech}
-                                        </motion.span>
-                                    ))}
+                                    {project.techStack.map((tech) => {
+                                        const slug = getSlugByName(tech);
+                                        return slug ? (
+                                            <Link key={tech} href={`/technologies#${slug}`}>
+                                                <motion.span
+                                                    whileHover={{ scale: 1.05 }}
+                                                    className="px-3 py-1.5 bg-red-500/5 border border-red-500/50 rounded text-sm text-[#E0E0E0] font-mono select-none hover:text-red-500 transition-colors inline-block"
+                                                >
+                                                    {tech}
+                                                </motion.span>
+                                            </Link>
+                                        ) : (
+                                            <motion.span
+                                                key={tech}
+                                                whileHover={{ scale: 1.05 }}
+                                                className="px-3 py-1.5 bg-red-500/5 border border-red-500/50 rounded text-sm text-[#E0E0E0] font-mono select-none"
+                                            >
+                                                {tech}
+                                            </motion.span>
+                                        );
+                                    })}
                                 </div>
                             </div>
                         </motion.div>

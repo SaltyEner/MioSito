@@ -6,6 +6,7 @@ import { ChevronLeft, ChevronRight, BookOpen } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { PROJECTS } from "@/lib/data/projects";
+import { getSlugByName } from "@/lib/data/technologies";
 
 function TiltedCard({ children }: { children: React.ReactNode }) {
     const ref = useRef<HTMLDivElement>(null);
@@ -163,11 +164,20 @@ export function ProjectsCarousel() {
                                         transition={{ duration: 0.5, delay: 0.5 }}
                                         className="flex flex-wrap gap-2 mb-6 md:mb-8"
                                     >
-                                        {currentProject.techStack.map((tech) => (
-                                            <span key={tech} className={`px-2 py-1 bg-surface border rounded text-[10px] md:text-xs text-gray-300 font-mono ${currentProject.slug === 'envchor-modeler' ? 'border-red-500/50' : 'border-border'}`}>
-                                                {tech}
-                                            </span>
-                                        ))}
+                                        {currentProject.techStack.map((tech) => {
+                                            const slug = getSlugByName(tech);
+                                            return slug ? (
+                                                <Link key={tech} href={`/technologies#${slug}`}>
+                                                    <span className="px-2 py-1 bg-red-500/5 border border-red-500/50 rounded text-[10px] md:text-xs text-[#E0E0E0] font-mono hover:text-red-500 transition-colors">
+                                                        {tech}
+                                                    </span>
+                                                </Link>
+                                            ) : (
+                                                <span key={tech} className="px-2 py-1 bg-red-500/5 border border-red-500/50 rounded text-[10px] md:text-xs text-[#E0E0E0] font-mono">
+                                                    {tech}
+                                                </span>
+                                            );
+                                        })}
                                     </motion.div>
 
                                     <motion.div
