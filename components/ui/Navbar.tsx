@@ -4,18 +4,21 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import Link from "next/link";
 import { PROJECTS } from "@/lib/data/projects";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 
 export function Navbar() {
     const [isProjectsOpen, setIsProjectsOpen] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isMobileProjectsOpen, setIsMobileProjectsOpen] = useState(false);
 
     return (
         <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-background/80 border-b border-white/5 transition-all duration-300">
             <div className="max-w-6xl mx-auto px-6 flex justify-between items-center py-4">
-                <Link href="/" className="text-xl font-bold tracking-tight select-none text-foreground">
+                <Link href="/" className="text-xl font-bold tracking-tight select-none text-foreground z-50">
                     alessioprosperi<span className="text-primary">.it</span>
                 </Link>
 
+                {/* Desktop Menu */}
                 <div className="hidden md:flex items-center gap-8 text-sm font-medium text-text-muted">
                     <Link href="/#hero" className="hover:text-foreground transition-colors">
                         Home
@@ -66,15 +69,88 @@ export function Navbar() {
                     </Link>
                 </div>
 
-                {/* Mobile Menu Placeholder */}
-                <div className="md:hidden">
-                    <Link
-                        href="/#contact"
-                        className="bg-foreground text-background text-sm font-semibold px-4 py-2 rounded-full"
-                    >
-                        Contattami
-                    </Link>
-                </div>
+                {/* Mobile Menu Toggle */}
+                <button
+                    className="md:hidden z-50 p-2 text-foreground"
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                >
+                    {isMobileMenuOpen ? <X /> : <Menu />}
+                </button>
+
+                {/* Mobile Menu Overlay */}
+                <AnimatePresence>
+                    {isMobileMenuOpen && (
+                        <motion.div
+                            initial={{ opacity: 0, y: -20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            className="absolute top-0 left-0 w-full bg-background border-b border-white/10 shadow-2xl md:hidden pt-24 pb-10 px-6 flex flex-col gap-6"
+                        >
+                            <Link
+                                href="/#hero"
+                                className="text-lg font-medium text-foreground"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                                Home
+                            </Link>
+
+                            {/* Mobile Projects Dropdown */}
+                            <div>
+                                <button
+                                    onClick={() => setIsMobileProjectsOpen(!isMobileProjectsOpen)}
+                                    className="flex items-center justify-between w-full text-lg font-medium text-foreground mb-4"
+                                >
+                                    My Projects
+                                    <ChevronDown className={`w-5 h-5 transition-transform ${isMobileProjectsOpen ? "rotate-180" : ""}`} />
+                                </button>
+                                <AnimatePresence>
+                                    {isMobileProjectsOpen && (
+                                        <motion.div
+                                            initial={{ height: 0, opacity: 0 }}
+                                            animate={{ height: "auto", opacity: 1 }}
+                                            exit={{ height: 0, opacity: 0 }}
+                                            className="overflow-hidden pl-4 border-l-2 border-primary/20 flex flex-col gap-3"
+                                        >
+                                            {PROJECTS.map((project) => (
+                                                <Link
+                                                    key={project.id}
+                                                    href={`/projects/${project.slug}`}
+                                                    className="text-text-muted hover:text-primary py-1 block"
+                                                    onClick={() => setIsMobileMenuOpen(false)}
+                                                >
+                                                    {project.title}
+                                                </Link>
+                                            ))}
+                                            <Link
+                                                href="/#projects"
+                                                className="text-primary font-bold py-1 block mt-2"
+                                                onClick={() => setIsMobileMenuOpen(false)}
+                                            >
+                                                Vedi Tutti
+                                            </Link>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </div>
+
+                            <Link
+                                href="/#about"
+                                className="text-lg font-medium text-foreground"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                                About Me
+                            </Link>
+
+                            <Link
+                                href="/#contact"
+                                className="bg-primary text-black text-center font-bold px-4 py-3 rounded-lg mt-4"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                                Contattami
+                            </Link>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </div>
         </nav>
     );

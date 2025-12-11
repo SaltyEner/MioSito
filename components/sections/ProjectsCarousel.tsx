@@ -129,12 +129,12 @@ export function ProjectsCarousel() {
                         >
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-8 h-full bg-card border border-border rounded-2xl overflow-hidden glass hover:border-primary/30 transition duration-500">
                                 {/* Left Side: Content */}
-                                <div className="p-8 md:p-12 flex flex-col justify-center h-full order-2 md:order-1">
+                                <div className="p-6 md:p-12 flex flex-col justify-center h-full order-2 md:order-1 relative z-10 bg-card/50 md:bg-transparent">
                                     <motion.div
                                         initial={{ opacity: 0, x: -30 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{ duration: 0.5, delay: 0.2 }}
-                                        className={`inline-flex self-start px-2 py-1 rounded text-[10px] font-bold mb-4 bg-white/5 text-white border border-white/10 uppercase tracking-widest`}
+                                        className={`inline-flex self-start px-2 py-1 rounded text-[10px] font-bold mb-3 md:mb-4 bg-white/5 text-white border border-white/10 uppercase tracking-widest`}
                                     >
                                         {currentProject.category}
                                     </motion.div>
@@ -143,7 +143,7 @@ export function ProjectsCarousel() {
                                         initial={{ opacity: 0, x: -30 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{ duration: 0.5, delay: 0.3 }}
-                                        className="text-3xl md:text-4xl font-bold text-foreground mb-4"
+                                        className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-3 md:mb-4"
                                     >
                                         {currentProject.title}
                                     </motion.h3>
@@ -152,7 +152,7 @@ export function ProjectsCarousel() {
                                         initial={{ opacity: 0, x: -30 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{ duration: 0.5, delay: 0.4 }}
-                                        className="text-text-muted text-lg leading-relaxed mb-8 line-clamp-3"
+                                        className="text-text-muted text-base md:text-lg leading-relaxed mb-6 md:mb-8 line-clamp-3 md:line-clamp-none max-w-sm md:max-w-none"
                                     >
                                         {currentProject.shortDescription}
                                     </motion.p>
@@ -161,10 +161,10 @@ export function ProjectsCarousel() {
                                         initial={{ opacity: 0, scale: 0.9 }}
                                         animate={{ opacity: 1, scale: 1 }}
                                         transition={{ duration: 0.5, delay: 0.5 }}
-                                        className="flex flex-wrap gap-2 mb-8"
+                                        className="flex flex-wrap gap-2 mb-6 md:mb-8"
                                     >
                                         {currentProject.techStack.map((tech) => (
-                                            <span key={tech} className="px-2 py-1 bg-surface border border-border rounded text-xs text-gray-300 font-mono">
+                                            <span key={tech} className={`px-2 py-1 bg-surface border rounded text-[10px] md:text-xs text-gray-300 font-mono ${currentProject.slug === 'envchor-modeler' ? 'border-red-500/50' : 'border-border'}`}>
                                                 {tech}
                                             </span>
                                         ))}
@@ -176,26 +176,27 @@ export function ProjectsCarousel() {
                                         transition={{ duration: 0.5, delay: 0.6 }}
                                         className="mt-auto"
                                     >
-                                        <Link href={`/projects/${currentProject.slug}`} className="inline-flex items-center gap-2 text-primary font-bold hover:underline mb-2">
+                                        <Link href={`/projects/${currentProject.slug}`} className="inline-flex items-center gap-2 text-primary font-bold hover:underline mb-2 text-sm md:text-base p-2 md:p-0 -ml-2 md:ml-0 bg-primary/10 rounded-lg md:bg-transparent md:rounded-none w-fit">
                                             <BookOpen className="w-4 h-4" /> Leggi Case Study
                                         </Link>
                                     </motion.div>
                                 </div>
 
                                 {/* Right Side: Visual Placeholder - Clickable */}
-                                <div className="bg-surface relative flex items-center justify-center border-b md:border-b-0 md:border-l border-border/50 order-1 md:order-2 overflow-hidden perspective-1000">
+                                <div className="bg-surface relative flex items-center justify-center border-b md:border-b-0 md:border-l border-border/50 order-1 md:order-2 overflow-hidden perspective-1000 min-h-[200px] md:min-h-auto">
                                     {/* Background Blur */}
                                     <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full ${currentProject.color} blur-[80px] opacity-30 pointer-events-none`}></div>
 
-                                    <Link href={`/projects/${currentProject.slug}`} className="block w-full h-full">
+                                    <Link href={`/projects/${currentProject.slug}`} className="block w-full h-full relative z-0">
+                                        <div className="md:hidden absolute inset-0 z-10"></div> {/* Interceptor for mobile if needed, though TiltedCard usually works better on desktop mouse. On mobile we might want just static image. Keeping structure for now but ensuring image is visible */}
                                         <TiltedCard>
-                                            <div className="relative rounded-xl overflow-hidden border border-white/10 shadow-2xl aspect-video">
+                                            <div className="relative rounded-xl overflow-hidden border border-white/10 shadow-2xl aspect-video w-[85%] mx-auto md:w-full">
                                                 <Image
                                                     src={currentProject.images.hero}
                                                     alt={currentProject.title}
                                                     width={600}
                                                     height={400}
-                                                    className="w-full h-full object-cover"
+                                                    className={`w-full h-full ${currentProject.slug === 'envchor-modeler' ? 'object-contain' : 'object-cover'}`}
                                                 />
                                                 {/* Reflection overlay */}
                                                 <div className="absolute inset-0 bg-linear-to-tr from-white/10 to-transparent opacity-50 pointer-events-none"></div>

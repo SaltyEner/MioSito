@@ -144,6 +144,37 @@ export const PROJECTS: Project[] = [
             github: "https://github.com/SaltyEner/Loosely-specified-contracts"
         },
         color: "bg-slate-800"
+    },
+    {
+        id: "5",
+        slug: "envchor-modeler",
+        title: "EnvChor Modeler",
+        category: "Blockchain / BPMN",
+        shortDescription: "Piattaforma full-stack per la modellazione di processi business su Blockchain con vincoli spaziali.",
+        fullDescription: `
+            EnvChor Modeler è una piattaforma full-stack innovativa progettata per colmare il divario tra la modellazione astratta dei processi aziendali e la loro esecuzione decentralizzata su Blockchain. Il problema principale che risolve è la natura statica dei modelli BPMN tradizionali, incapaci di adattarsi dinamicamente ai dati ambientali in tempo reale (come dati IoT o posizione) e privi di un'autorità centrale fidata nei processi distribuiti.
+
+            Utilizzando un approccio model-driven, il sistema estende la notazione BPMN per includere vincoli spaziali e contestuali, traducendo automaticamente questi modelli visivi in Smart Contract Solidity eseguibili su rete Ethereum.
+
+            L'architettura è costruita su un framework modulare che combina un modellatore di ambienti fisici/logici, un motore di coreografia e un sistema di deployment su Blockchain (Ganache), garantendo trasparenza, automazione e verificabilità senza necessità di coding manuale dello smart contract.
+        `,
+        techStack: ["BPMN", "chor.js", "OpenLayers", "Solidity", "Ethereum", "Ganache", "Choreography"],
+        features: [
+            "Generazione Automatica di Smart Contract: Traduzione istantanea diagrammi in Solidity.",
+            "Modellazione Environment-Aware: Definizione topologie spaziali e attributi contestuali.",
+            "Environmental Guards Dinamiche: Logiche condizionali basate su posizione e dati real-time.",
+            "Animazione e Monitoraggio Real-Time: Visualizzazione esecuzione interattiva su mappa.",
+            "Deployment Decentralizzato: Integrazione diretta con Blockchain locali (Ganache)."
+        ],
+        images: {
+            hero: "/envchor-modeler.png",
+            gallery: []
+        },
+        links: {
+            demo: "#",
+            github: "#"
+        },
+        color: "bg-emerald-600"
     }
 ];
 

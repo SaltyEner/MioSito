@@ -107,13 +107,13 @@ export default function ProjectPage() {
                             {/* Hero Image */}
                             <motion.div
                                 variants={itemVariants}
-                                className="rounded-2xl overflow-hidden border border-border shadow-2xl relative aspect-video bg-surface"
+                                className="rounded-2xl overflow-hidden border border-border shadow-2xl relative aspect-video"
                             >
                                 <Image
                                     src={project.images.hero}
                                     alt={project.title}
                                     fill
-                                    className="object-cover"
+                                    className="object-contain"
                                 />
                             </motion.div>
 
@@ -148,14 +148,14 @@ export default function ProjectPage() {
 
                         {/* Sidebar */}
                         <motion.div variants={itemVariants} className="space-y-8">
-                            <div className="bg-card border border-border p-6 rounded-xl sticky top-24">
+                            <div className={`p-6 rounded-xl sticky top-24 border ${project.slug === 'envchor-modeler' ? 'bg-emerald-500/5 border-emerald-500/50' : 'bg-card border-border'}`}>
                                 <h3 className="text-lg font-bold mb-6 text-foreground">Technologies</h3>
                                 <div className="flex flex-wrap gap-2">
                                     {project.techStack.map((tech) => (
                                         <motion.span
                                             key={tech}
                                             whileHover={{ scale: 1.05 }}
-                                            className="px-3 py-1.5 bg-surface border border-border rounded text-sm text-gray-300 font-mono select-none"
+                                            className={`px-3 py-1.5 bg-surface border rounded text-sm text-gray-300 font-mono select-none ${project.slug === 'envchor-modeler' ? 'border-red-500/50' : 'border-border'}`}
                                         >
                                             {tech}
                                         </motion.span>
