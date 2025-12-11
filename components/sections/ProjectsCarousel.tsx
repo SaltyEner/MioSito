@@ -168,12 +168,12 @@ export function ProjectsCarousel() {
                                             const slug = getSlugByName(tech);
                                             return slug ? (
                                                 <Link key={tech} href={`/technologies#${slug}`}>
-                                                    <span className="px-2 py-1 bg-red-500/5 border border-red-500/50 rounded text-[10px] md:text-xs text-[#E0E0E0] font-mono hover:text-red-500 transition-colors">
+                                                    <span className="px-2 py-1 bg-brand-red/5 border border-brand-red/50 rounded text-[10px] md:text-xs text-tech-text font-mono hover:text-brand-red transition-colors">
                                                         {tech}
                                                     </span>
                                                 </Link>
                                             ) : (
-                                                <span key={tech} className="px-2 py-1 bg-red-500/5 border border-red-500/50 rounded text-[10px] md:text-xs text-[#E0E0E0] font-mono">
+                                                <span key={tech} className="px-2 py-1 bg-brand-red/5 border border-brand-red/50 rounded text-[10px] md:text-xs text-tech-text font-mono">
                                                     {tech}
                                                 </span>
                                             );

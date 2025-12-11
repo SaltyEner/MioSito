@@ -119,11 +119,11 @@ export function FeaturedProject() {
                             transition={{ duration: 0.8, delay: 0.5, type: "spring" }}
                             className="flex flex-wrap gap-2 mb-10"
                         >
-                            <span className="px-3 py-1 bg-red-500/5 border border-red-500/50 rounded text-xs text-[#E0E0E0] font-mono">Next.js 15</span>
-                            <span className="px-3 py-1 bg-red-500/5 border border-red-500/50 rounded text-xs text-[#E0E0E0] font-mono">FastAPI</span>
-                            <span className="px-3 py-1 bg-red-500/5 border border-red-500/50 rounded text-xs text-[#E0E0E0] font-mono">Gemini Vision</span>
-                            <span className="px-3 py-1 bg-red-500/5 border border-red-500/50 rounded text-xs text-[#E0E0E0] font-mono">Twilio</span>
-                            <span className="px-3 py-1 bg-red-500/5 border border-red-500/50 rounded text-xs text-[#E0E0E0] font-mono">Docker</span>
+                            <span className="px-3 py-1 bg-brand-red/5 border border-brand-red/50 rounded text-xs text-tech-text font-mono">Next.js 15</span>
+                            <span className="px-3 py-1 bg-brand-red/5 border border-brand-red/50 rounded text-xs text-tech-text font-mono">FastAPI</span>
+                            <span className="px-3 py-1 bg-brand-red/5 border border-brand-red/50 rounded text-xs text-tech-text font-mono">Gemini Vision</span>
+                            <span className="px-3 py-1 bg-brand-red/5 border border-brand-red/50 rounded text-xs text-tech-text font-mono">Twilio</span>
+                            <span className="px-3 py-1 bg-brand-red/5 border border-brand-red/50 rounded text-xs text-tech-text font-mono">Docker</span>
                         </motion.div>
 
                         <motion.div
@@ -133,12 +133,12 @@ export function FeaturedProject() {
                             className="grid grid-cols-2 gap-4 mb-8"
                         >
                             <div className="border-l-2 border-primary/50 pl-4">
-                                <div className="text-red-500 font-bold text-xl">99.9%</div>
-                                <div className="text-sm text-red-500">Parsing Accuracy</div>
+                                <div className="text-brand-red font-bold text-xl">99.9%</div>
+                                <div className="text-brand-red text-sm">Parsing Accuracy</div>
                             </div>
                             <div className="border-l-2 border-primary/50 pl-4">
-                                <div className="text-red-500 font-bold text-xl">Real-time</div>
-                                <div className="text-sm text-red-500">WhatsApp Sync</div>
+                                <div className="text-brand-red font-bold text-xl">Real-time</div>
+                                <div className="text-brand-red text-sm">WhatsApp Sync</div>
                             </div>
                         </motion.div>
 

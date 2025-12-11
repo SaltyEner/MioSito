@@ -47,6 +47,9 @@ html {
 
   --color-border: var(--border);
 
+  --color-brand-red: #FF5252;
+  --color-tech-text: #E0E0E0;
+
   /* Animation from user snippet */
   --animate-blob: blob 7s infinite;
   --animate-fade-in-up: fadeInUp 0.5s ease-out forwards;
