@@ -114,6 +114,36 @@ export const PROJECTS: Project[] = [
             github: "#"
         },
         color: "bg-blue-600"
+    },
+    {
+        id: "4",
+        slug: "loosely-specified-smart-contracts",
+        title: "Loosely Specified Smart Contracts Framework",
+        category: "Blockchain / R&D",
+        shortDescription: "Framework avanzato per l'adattabilità dinamica su Ethereum.",
+        fullDescription: `
+            Loosely Specified Smart Contracts è un framework innovativo progettato per superare la rigidità intrinseca degli Smart Contract su Ethereum. Il problema principale che risolve è l'incapacità dei contratti tradizionali di gestire i "Loosely Specified Processes" (LSP), ovvero scenari in cui i requisiti cambiano in modo imprevedibile durante l'esecuzione.
+
+            Utilizzando Solidity avanzato combinato con Low-level Assembly per la manipolazione diretta della memoria, la soluzione offre una flessibilità senza precedenti rispetto agli standard attuali.
+
+            L'architettura implementa un Contract Deployer capace di iniettare bytecode a runtime e un sistema di Selector ottimizzati per il routing dinamico delle funzioni, garantendo adattabilità in settori complessi come Supply Chain e DeFi senza sacrificare l'efficienza del gas.
+        `,
+        techStack: ["Solidity", "Assembly (Yul)", "Ethereum", "Smart Contracts", "Hardhat"],
+        features: [
+            "Deployment dinamico a runtime tramite Bytecode",
+            "Supporto nativo per Loosely Specified Processes (LSP)",
+            "Ottimizzazione Gas con Inline Assembly",
+            "Routing funzioni avanzato con Staticcall"
+        ],
+        images: {
+            hero: "/loosely-contracts-final.png",
+            gallery: []
+        },
+        links: {
+            demo: "https://remix.ethereum.org/#url=https://github.com/SaltyEner/Loosely-specified-contracts/blob/master/contracts/core/ContractDeployer.sol",
+            github: "https://github.com/SaltyEner/Loosely-specified-contracts"
+        },
+        color: "bg-slate-800"
     }
 ];
 

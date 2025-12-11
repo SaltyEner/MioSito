@@ -27,10 +27,10 @@ export function Navbar() {
                         onMouseEnter={() => setIsProjectsOpen(true)}
                         onMouseLeave={() => setIsProjectsOpen(false)}
                     >
-                        <button className="flex items-center gap-1 hover:text-foreground transition-colors py-2">
+                        <Link href="/#projects" className="flex items-center gap-1 hover:text-foreground transition-colors py-2">
                             My Projects
                             <ChevronDown className={`w-4 h-4 transition-transform ${isProjectsOpen ? "rotate-180" : ""}`} />
-                        </button>
+                        </Link>
 
                         <AnimatePresence>
                             {isProjectsOpen && (
@@ -45,7 +45,7 @@ export function Navbar() {
                                         {PROJECTS.map((project) => (
                                             <Link
                                                 key={project.id}
-                                                href={project.slug === 'konta' ? '/#konta' : '/#projects'}
+                                                href={`/projects/${project.slug}`}
                                                 className="block px-4 py-2 hover:bg-surface rounded-lg text-text-muted hover:text-foreground transition-colors"
                                             >
                                                 {project.title}
