@@ -110,7 +110,6 @@ export const PROJECTS: Project[] = [
             gallery: []
         },
         links: {
-            demo: "#",
             github: "https://github.com/SaltyEner/TrustChain"
         },
         color: "bg-blue-600"
