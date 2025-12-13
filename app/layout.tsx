@@ -15,6 +15,28 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Alessio Prosperi | Senior Full Stack Engineer & SaaS Builder",
   description: "Portfolio di Alessio Prosperi. Sviluppatore Senior specializzato in Next.js, Python FastAPI e Automazione AI. Creatore di KONTA.",
+  openGraph: {
+    title: "Alessio Prosperi | Senior Full Stack Engineer & SaaS Builder",
+    description: "Portfolio di Alessio Prosperi. Sviluppatore Senior specializzato in Next.js, Python FastAPI e Automazione AI.",
+    url: "https://alessioprosperi.it",
+    siteName: "Alessio Prosperi Portfolio",
+    images: [
+      {
+        url: "/avatar-real.png",
+        width: 800,
+        height: 800,
+        alt: "Alessio Prosperi Profile",
+      },
+    ],
+    locale: "it_IT",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Alessio Prosperi | Senior Full Stack Engineer & SaaS Builder",
+    description: "Portfolio di Alessio Prosperi. Sviluppatore Senior specializzato in Next.js, Python FastAPI e Automazione AI.",
+    images: ["/avatar-real.png"],
+  },
 };
 
 import { Analytics } from "@vercel/analytics/react";

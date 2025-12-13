@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import Link from "next/link";
 import { PROJECTS } from "@/lib/data/projects";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X, Download } from "lucide-react";
 
 export function Navbar() {
     const [isProjectsOpen, setIsProjectsOpen] = useState(false);
@@ -71,6 +71,15 @@ export function Navbar() {
                     <Link href="/#contact" className="hover:text-foreground transition-colors">
                         Contact Me
                     </Link>
+
+                    <a
+                        href="/CV_Alessio_Prosperi.pdf"
+                        download="CV_Alessio_Prosperi.pdf"
+                        className="flex items-center gap-2 hover:text-primary transition-colors border border-border px-3 py-1.5 rounded-full bg-surface"
+                    >
+                        <Download className="w-4 h-4" />
+                        CV
+                    </a>
                 </div>
 
                 {/* Mobile Menu Toggle */}
@@ -152,6 +161,16 @@ export function Navbar() {
                             >
                                 About Me
                             </Link>
+
+                            <a
+                                href="/CV_Alessio_Prosperi.pdf"
+                                download="CV_Alessio_Prosperi.pdf"
+                                className="text-lg font-medium text-foreground flex items-center gap-2"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                                <Download className="w-5 h-5" />
+                                Scarica CV
+                            </a>
 
                             <Link
                                 href="/#contact"
