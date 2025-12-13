@@ -50,8 +50,8 @@ export const PROJECTS: Project[] = [
             gallery: []
         },
         links: {
-            demo: "#",
-            github: "#"
+            demo: "contact",
+            github: "private"
         },
         color: "bg-primary"
     },
@@ -79,8 +79,8 @@ export const PROJECTS: Project[] = [
             gallery: []
         },
         links: {
-            demo: "#",
-            github: "#"
+            // demo removed
+            github: "university"
         },
         color: "bg-indigo-500"
     },
@@ -111,7 +111,7 @@ export const PROJECTS: Project[] = [
         },
         links: {
             demo: "#",
-            github: "#"
+            github: "https://github.com/SaltyEner/TrustChain"
         },
         color: "bg-blue-600"
     },
@@ -171,8 +171,8 @@ export const PROJECTS: Project[] = [
             gallery: []
         },
         links: {
-            demo: "#",
-            github: "#"
+            // demo removed
+            github: "university"
         },
         color: "bg-emerald-600"
     }

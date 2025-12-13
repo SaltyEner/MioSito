@@ -7,7 +7,7 @@ import { getSlugByName } from "@/lib/data/technologies";
 import { Navbar } from "@/components/ui/Navbar";
 import { Footer } from "@/components/sections/Footer";
 import { motion, Variants } from "framer-motion";
-import { ArrowLeft, ExternalLink, Github, CheckCircle } from "lucide-react";
+import { ArrowLeft, ExternalLink, Github, CheckCircle, Lock, GraduationCap, Mail } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -76,7 +76,16 @@ export default function ProjectPage() {
                         </p>
 
                         <div className="flex gap-4 mt-8">
-                            {project.links.demo && (
+                            {project.links.demo === "contact" ? (
+                                <motion.a
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    href="mailto:tuoemail@example.com?subject=Richiesta%20Demo%20Konta" // TODO: Replace with actual email
+                                    className="bg-primary text-black px-6 py-3 rounded-lg font-bold hover:bg-primary-hover transition flex items-center gap-2"
+                                >
+                                    <Mail className="w-4 h-4" /> Richiedi Demo
+                                </motion.a>
+                            ) : project.links.demo && (
                                 <motion.a
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
@@ -87,7 +96,15 @@ export default function ProjectPage() {
                                     <ExternalLink className="w-4 h-4" /> Live Demo
                                 </motion.a>
                             )}
-                            {project.links.github && (
+                            {project.links.github === "private" ? (
+                                <div className="bg-yellow-500/10 border border-yellow-500/20 text-yellow-500 px-6 py-3 rounded-lg font-bold flex items-center gap-2 cursor-not-allowed opacity-80">
+                                    <Lock className="w-4 h-4" /> Private Code
+                                </div>
+                            ) : project.links.github === "university" ? (
+                                <div className="bg-blue-500/10 border border-blue-500/20 text-blue-500 px-6 py-3 rounded-lg font-bold flex items-center gap-2 cursor-help backdrop-blur-sm">
+                                    <GraduationCap className="w-4 h-4" /> University Property
+                                </div>
+                            ) : project.links.github && (
                                 <motion.a
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
