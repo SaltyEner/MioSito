@@ -13,12 +13,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.alessioprosperi.it"),
   title: "Alessio Prosperi | Senior Full Stack Engineer & SaaS Builder",
   description: "Portfolio di Alessio Prosperi. Sviluppatore Senior specializzato in Next.js, Python FastAPI e Automazione AI. Creatore di KONTA.",
   openGraph: {
     title: "Alessio Prosperi | Senior Full Stack Engineer & SaaS Builder",
     description: "Portfolio di Alessio Prosperi. Sviluppatore Senior specializzato in Next.js, Python FastAPI e Automazione AI.",
-    url: "https://alessioprosperi.it",
+    url: "https://www.alessioprosperi.it",
     siteName: "Alessio Prosperi Portfolio",
     images: [
       {

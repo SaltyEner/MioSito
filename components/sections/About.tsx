@@ -42,7 +42,7 @@ export function About() {
                         transition={{ duration: 0.6, delay: 0.3 }}
                         className="text-lg md:text-xl text-text-muted leading-relaxed mb-6"
                     >
-                        Ho 24 anni e sono un laureando in Computer Science, con specializzazione in Business Informatics e Data Science,
+                        Ho 24 anni e sono un laureato in Computer Science, con specializzazione in Business Informatics e Data Science,
                         guidato da una forte passione per la tecnologia. Nel corso del mio percorso accademico ho sviluppato solide competenze in programmazione, algoritmi e gestione dei dati, costruendo una base tecnica robusta e orientata alla crescita.
                     </motion.p>
                     <motion.p
@@ -51,7 +51,7 @@ export function About() {
                         transition={{ duration: 0.6, delay: 0.4 }}
                         className="text-lg md:text-xl text-text-muted leading-relaxed mb-8"
                     >
-                        Mi definisco un "Builder": amo prendere un problema complesso e trasformarlo in una soluzione software funzionante.
+                        Mi definisco un &quot;Builder&quot;: amo prendere un problema complesso e trasformarlo in una soluzione software funzionante.
                         Esperienze come lo sviluppo di <strong>Konta</strong> mi hanno permesso di andare oltre la teoria, affrontando sfide reali di architettura, deployment e integrazione AI.
                         Cerco un ambiente stimolante dove poter imparare dai migliori e contribuire con la mia proattività.
                     </motion.p>
