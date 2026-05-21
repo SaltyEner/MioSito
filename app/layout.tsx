@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.alessioprosperi.it"),
   title: "Alessio Prosperi | Junior Full Stack Engineer & SaaS Builder",
   description: "Portfolio di Alessio Prosperi. Sviluppatore Junior specializzato in Next.js, Python FastAPI e Automazione AI. Creatore di KONTA.",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Alessio Prosperi | Junior Full Stack Engineer & SaaS Builder",
     description: "Portfolio di Alessio Prosperi. Sviluppatore Junior specializzato in Next.js, Python FastAPI e Automazione AI.",

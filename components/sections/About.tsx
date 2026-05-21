@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 export function About() {
@@ -16,6 +17,24 @@ export function About() {
             >
                 <h2 className="text-3xl font-bold text-foreground">Chi Sono</h2>
                 <div className="h-px flex-1 bg-border"></div>
+            </motion.div>
+
+            <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: false, amount: 0.3 }}
+                className="relative mb-10 lg:hidden"
+            >
+                <div className="absolute inset-0 bg-primary/20 blur-[80px] rounded-full"></div>
+                <div className="relative aspect-square w-full max-w-[200px] sm:max-w-[240px] mx-auto overflow-hidden rounded-full border-2 border-primary/20 shadow-2xl shadow-primary/10">
+                    <Image
+                        src="/avatar-real.png"
+                        alt="Alessio Prosperi Avatar"
+                        fill
+                        className="object-cover"
+                    />
+                </div>
             </motion.div>
 
             <motion.div
